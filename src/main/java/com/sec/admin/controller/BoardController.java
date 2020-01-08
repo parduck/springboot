@@ -29,7 +29,7 @@ public class BoardController {
 		board.setSeq(1);
 		board.setTitle("test");
 		board.setWriter("kim");
-		board.setContent("test contents...");
+		board.setContent("test contents123...");
 		board.setCreateDate(new Date());
 		board.setCnt(0);
 		return board;
