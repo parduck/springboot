@@ -12,7 +12,7 @@ public class BoardController {
 	
 	@GetMapping("/hello")
 	public String hello(String name) {
-		return "Hello:" + name;
+		return "Hello:" + name; //test
 	}
 }
  
