@@ -6,7 +6,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.sec.admin.domain.BoardVO;
 //is this work well??
-import com.sec.admin.domain.BoardVO;
 
 import java.util.ArrayList;
 import java.util.Date;
