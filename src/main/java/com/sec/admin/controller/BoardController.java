@@ -1,11 +1,14 @@
 package com.sec.admin.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import org.springframework.web.bind.annotation.RestController;
 
+import com.sec.admin.domain.Board;
 import com.sec.admin.domain.BoardVO;
 //is this work well??
+import com.sec.persistence.BoardRepository;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -49,6 +52,25 @@ public class BoardController {
 			boardList.add(board);
 		}
 		return boardList;
+	}
+	
+	@Autowired
+	private BoardRepository boardRepo;
+	
+	@GetMapping("/setBoardDB")
+	public List<Board> setBoardDB() {		
+		
+		Board board = new Board();
+		board.setSeq(1L);
+		board.setTitle("test");
+		board.setWriter("kim");
+		board.setContent("test contents123...");
+		board.setCreateDate(new Date());
+		board.setCnt(0L);
+		
+		boardRepo.save(board);
+		
+		return boardRepo.findAll();
 	}
 }
  
