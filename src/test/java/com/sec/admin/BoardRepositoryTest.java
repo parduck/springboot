@@ -20,7 +20,7 @@ public class BoardRepositoryTest {
 	
 	
 	  @Test public void testInsertBoard() { Board board = new Board();
-	  board.setTitle("first test"); board.setWriter("tester");
+	 // board.setTitle("first test"); board.setMemberId("tester");
 	  board.setContent("is it right??"); board.setCreateDate(new Date());
 	  board.setCnt(0L);
 	  

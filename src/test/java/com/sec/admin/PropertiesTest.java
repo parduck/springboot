@@ -5,10 +5,10 @@ import org.springframework.core.env.Environment;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.sec.admin.controller.BoardController;
+import com.sec.admin.controller.RestBoardController;
 
 
-@SpringBootTest(classes=BoardController.class,properties= {"author.name=kim","author.age=18","author.nation=kor"})
+@SpringBootTest(classes=RestBoardController.class,properties= {"author.name=kim","author.age=18","author.nation=kor"})
 public class PropertiesTest {
 	/*
 	 * @Autowired Environment environment;
