@@ -1,8 +1,8 @@
-package com.sec.persistence;
+package com.sec.repo;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.sec.admin.domain.Member;
+import com.sec.domain.Member;
 
 public interface MemberRepository extends JpaRepository<Member, String> {
 

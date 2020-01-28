@@ -1,4 +1,4 @@
-package com.sec.admin.domain;
+package com.sec.domain;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -20,12 +20,11 @@ import lombok.ToString;
 
 @Getter
 @Setter
-@ToString(exclude="boardList")
+@ToString//(exclude="boardList")
 @Entity
 public class Member {
 
 	@Id 
-	@Column(name="MEMBER_ID")
 	private String id;
 	private String password;
 	private String name; 
@@ -33,8 +32,8 @@ public class Member {
 	
 	
 	
-	@OneToMany(mappedBy = "member", fetch=FetchType.EAGER, cascade=CascadeType.ALL) // Member 객체와 양방향 관계를 만들기위해 추가한다. (대상테이블)
-	private List<Board> boardList = new ArrayList<Board>() ;
+	//@OneToMany(mappedBy = "member", fetch=FetchType.EAGER, cascade=CascadeType.ALL) // Member 객체와 양방향 관계를 만들기위해 추가한다. (대상테이블)
+	//private List<Board> boardList = new ArrayList<Board>() ;
 	 	 
 	
 }

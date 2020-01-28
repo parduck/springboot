@@ -1,11 +1,11 @@
-package com.sec.admin.service;
+package com.sec.admin.dao;
 
 import java.util.List;
 
 import com.sec.domain.Board;
 import com.sec.vo.BoardVO;
 
-public interface BoardService {
+public interface BoardDao {
 
 	List<BoardVO> getBoardList(BoardVO board);
 

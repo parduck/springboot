@@ -1,4 +1,4 @@
-package com.sec.admin.domain;
+package com.sec.domain;
 
 import java.util.Date;
 
@@ -10,7 +10,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class FirmwareVO {
+public class FirmwareV {
 	private String firmwareID;
 	private String modelName;
 	private String customer;

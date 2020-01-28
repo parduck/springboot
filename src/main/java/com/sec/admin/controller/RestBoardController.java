@@ -7,10 +7,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import org.springframework.web.bind.annotation.RestController;
 
-import com.sec.admin.domain.Board;
-import com.sec.admin.domain.BoardVO;
-//is this work well??
-import com.sec.persistence.BoardRepository;
+import com.sec.domain.Board;
+import com.sec.domain.BoardV;
+import com.sec.repo.BoardRepository;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -25,8 +24,8 @@ public class RestBoardController {
 
 	
 	@GetMapping("/getRestBoard")
-	public BoardVO getBoard() {
-		BoardVO board = new BoardVO();
+	public BoardV getBoard() {
+		BoardV board = new BoardV();
 		board.setSeq(1);
 		board.setTitle("test");
 		board.setWriter("kim");
@@ -37,10 +36,10 @@ public class RestBoardController {
 	}
 	
 	@GetMapping("/getRestBoardList")
-	public List<BoardVO> getBoardList() {
-		List<BoardVO> boardList = new ArrayList<BoardVO>();
+	public List<BoardV> getBoardList() {
+		List<BoardV> boardList = new ArrayList<BoardV>();
 		for (int i=1;i<=10;i++) {
-			BoardVO board = new BoardVO();
+			BoardV board = new BoardV();
 		
 			board.setSeq(i);
 			board.setTitle("test"+i);

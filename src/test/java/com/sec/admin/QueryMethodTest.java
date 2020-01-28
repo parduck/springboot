@@ -10,8 +10,8 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 
-import com.sec.admin.domain.Board;
-import com.sec.persistence.BoardRepository;
+import com.sec.domain.Board;
+import com.sec.repo.BoardRepository;
 
 @SpringBootTest
 public class QueryMethodTest {

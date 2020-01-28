@@ -1,4 +1,4 @@
-package com.sec.admin.domain;
+package com.sec.domain;
 
 import java.util.Date;
 
@@ -14,6 +14,9 @@ import javax.persistence.MapsId;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -40,12 +43,13 @@ public class Board {
 
 	
 	@ManyToOne	  
-	@JoinColumn(name="MEMBER_ID",nullable=false) 
+	//@NotFound(action = NotFoundAction.IGNORE)
+	@JoinColumn(name="MEMBER_ID") //,nullable=false)-->outer join을 inner join으로 바꿀 
 	private Member member;
 	
-	public void setMember(Member member) {
-		this.member=member;
-		member.getBoardList().add(this);
-	}	 
+	/*
+	 * public void setMember(Member member) { this.member=member;
+	 * member.getBoardList().add(this); }
+	 */
 	
 }

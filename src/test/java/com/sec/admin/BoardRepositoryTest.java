@@ -8,8 +8,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.sec.admin.domain.Board;
-import com.sec.persistence.BoardRepository;
+import com.sec.domain.Board;
+import com.sec.repo.BoardRepository;
 
 @SpringBootTest
 public class BoardRepositoryTest {

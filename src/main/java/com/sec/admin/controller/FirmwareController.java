@@ -4,9 +4,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import org.springframework.web.bind.annotation.RestController;
 
-import com.sec.admin.domain.BoardVO;
-import com.sec.admin.domain.FirmwareVO;
-
+import com.sec.domain.BoardV;
+import com.sec.domain.FirmwareV;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -20,12 +19,12 @@ public class FirmwareController {
 	}
 	
 	@GetMapping("/getFirmwareList")
-	public List<FirmwareVO> getFirmwareList() {
-		List<FirmwareVO> firmwareList = new ArrayList<FirmwareVO>();
+	public List<FirmwareV> getFirmwareList() {
+		List<FirmwareV> firmwareList = new ArrayList<FirmwareV>();
 		
 		//change to JPA
 		for (int i=1;i<=10;i++) {
-			FirmwareVO firmware = new FirmwareVO();
+			FirmwareV firmware = new FirmwareV();
 		
 			
 			firmware.setFirmwareID("FW-000"+i);

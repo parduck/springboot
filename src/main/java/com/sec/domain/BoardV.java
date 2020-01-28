@@ -1,4 +1,4 @@
-package com.sec.admin.domain;
+package com.sec.domain;
 
 import java.util.Date;
 
@@ -16,7 +16,7 @@ import lombok.ToString;
 @Setter
 @ToString
 /* @Entity */
-public class BoardVO {
+public class BoardV {
 
 	/* @Id @GeneratedValue */
 	private int seq;

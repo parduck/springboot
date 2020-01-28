@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8" />
+
+</head>
+<body>
+<h1><font color="yellow">BoardException Occured..</font></h1>
+<a th:href="@{/}">main page..</a><hr>
+<table>
+<tr>
+	<th bgcolor="yellow" align="left">Exception Message:[[${exception.message}]]</th>
+</tr>
+<tr th:each="trace:${exception.stackTrace}">
+	<td th:text="${trace}">
+</tr>
+</table>
+</body>
+</html>
