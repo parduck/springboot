@@ -16,7 +16,7 @@
 	</tr>
 	<tr>
 		<td bgcolor="orange" th:text="작성자" ></td>
-		<td th:text="${board.writer}"></td>
+		<td th:text="${board.member.name}"></td>
 	</tr>
 	<tr>
 		<td bgcolor="orange" th:text="내용" ></td>
@@ -38,7 +38,7 @@
 </table>
 </form>
 <a th:href="@{/insertBoard}">글 등록</a>&nbsp;&nbsp;&nbsp;
-<a th:if="${session['member'].role=='ROLE_ADMIN'}" th:href="@{/deleteBoard(seq=${board.seq})}">글 삭제</a>&nbsp;&nbsp;&nbsp;
+<!-- <a th:if="${session['member'].role=='ROLE_ADMIN'}" th:href="@{/deleteBoard(seq=${board.seq})}">글 삭제</a>&nbsp;&nbsp;&nbsp; -->
 <a th:href="@{/getBoardList}">글목록</a>
 </body>
 </html>

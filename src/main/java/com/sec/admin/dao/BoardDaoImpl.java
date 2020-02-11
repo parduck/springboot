@@ -8,9 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.sec.domain.Board;
+import com.sec.domain.Member;
 import com.sec.repo.BoardRepository;
-import com.sec.util.MapperUtil;
 import com.sec.vo.BoardVO;
+import com.sec.vo.MemberVO;
 
 @Component
 public class BoardDaoImpl implements BoardDao {
@@ -33,7 +34,10 @@ public class BoardDaoImpl implements BoardDao {
 		//convert entity to VO
 		for (int i = 0; i < boardList.size(); i++) { 
 			BoardVO boardVO = new BoardVO();
+			MemberVO memberVO = new MemberVO();
 			BeanUtils.copyProperties(boardList.get(i), boardVO);
+			BeanUtils.copyProperties(boardList.get(i).getMember(), memberVO);
+			boardVO.setMember(memberVO);
 			boardVOList.add(boardVO); 
 		}
 		 
@@ -45,7 +49,10 @@ public class BoardDaoImpl implements BoardDao {
 		//translate VO to entity
 		//날짜는 ignore로 처리하여 값을 받지 않고 entity 생성돌때 같이 생성된다.
 		Board boardDomain = new Board();
+		Member memberDomain = new Member();
 		BeanUtils.copyProperties(board, boardDomain,"createDate");
+		BeanUtils.copyProperties(board.getMember(), memberDomain);
+		boardDomain.setMember(memberDomain);
 		
 	System.out.println("asis======="+board.toString());
 	System.out.println("tobe======="+boardDomain.toString());
@@ -58,7 +65,11 @@ public class BoardDaoImpl implements BoardDao {
 	public BoardVO getBoard(BoardVO board) {
 		//translate  entity to Vo
 		BoardVO boardVO = new BoardVO();
+		MemberVO memberVO = new MemberVO();
+		
 		BeanUtils.copyProperties(boardRepo.findById(board.getSeq()).get(), boardVO);
+		BeanUtils.copyProperties(boardRepo.findById(board.getSeq()).get().getMember(), memberVO);
+		boardVO.setMember(memberVO);
 		
 		return boardVO;
 	}

@@ -18,5 +18,7 @@ public class BoardVO {
 	private String content;
 	private Date createDate;
 	private long cnt;
+	
+	MemberVO member;
 
 }

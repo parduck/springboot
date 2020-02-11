@@ -19,10 +19,10 @@ public class LoginController {
 	@Autowired
 	private MemberService memberService;
 	
-	@GetMapping("/login")
-	public void loginView() {
-		
-	}
+//	@GetMapping("/login")
+//	public void loginView() {
+//		
+//	}
 	
 	@PostMapping("/login")
 	public String login(MemberVO member, Model model) {

@@ -1,27 +1,23 @@
 package com.sec.admin.controller;
 
+import java.util.List;
+
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.sec.admin.service.BoardService;
-import com.sec.domain.Board;
-import com.sec.domain.BoardV;
-import com.sec.repo.BoardRepository;
+import com.sec.config.SecurityUser;
 import com.sec.vo.BoardVO;
 import com.sec.vo.MemberVO;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-
-@SessionAttributes("member")
+//@SessionAttributes("member")
 @Controller
 public class BoardController {
 	
@@ -37,11 +33,19 @@ public class BoardController {
 	public MemberVO setMember() {
 		return new MemberVO();
 	}
+//	@RequestMapping("/getBoardList")
+//	public String getBoardList(@ModelAttribute("member") MemberVO member, Model model, BoardVO board) {
+//		if(member.getId() ==null) {
+//			System.out.println("===>"+member.toString());
+//			return "redirect:login";
+//		}
+//		List<BoardVO> boardList = boardService.getBoardList(board);
+//		model.addAttribute("boardList",boardList);
+//		return "getBoardList";
+//	}
 	@RequestMapping("/getBoardList")
-	public String getBoardList(@ModelAttribute("member") MemberVO member, Model model, BoardVO board) {
-		if(member.getId() ==null) {
-			return "redirect:login";
-		}
+	public String getBoardList(Model model, BoardVO board) {
+
 		List<BoardVO> boardList = boardService.getBoardList(board);
 		model.addAttribute("boardList",boardList);
 		return "getBoardList";
@@ -51,38 +55,68 @@ public class BoardController {
 	public String insertBoardView() {
 		return "insertBoard";
 	}
+//	@PostMapping("/insertBoard")
+//	public String insertBoard(@ModelAttribute("member") MemberVO member,BoardVO board) {
+//		if(member.getId() ==null) {
+//			return "redirect:login";
+//		}
+//		boardService.insertBoard(board);
+//		return "redirect:getBoardList";
+//	}
 	@PostMapping("/insertBoard")
-	public String insertBoard(@ModelAttribute("member") MemberVO member,BoardVO board) {
-		if(member.getId() ==null) {
-			return "redirect:login";
-		}
+	public String insertBoard(BoardVO board,@AuthenticationPrincipal SecurityUser principal) {
+		System.out.println("insert====called");
+		MemberVO memberVo = new MemberVO();
+		BeanUtils.copyProperties(principal.getMember(), memberVo);
+		
+		System.out.println("insert===="+principal.getMember().toString());
+		board.setMember(memberVo);
 		boardService.insertBoard(board);
 		return "redirect:getBoardList";
 	}
 	
+//	@GetMapping("/getBoard")
+//	public String getBoard(@ModelAttribute("member") MemberVO member,BoardVO board, Model model) {
+//		if(member.getId() ==null) {
+//			return "redirect:login";
+//		}
+//		model.addAttribute("board",boardService.getBoard(board));
+//		return "getBoard";
+//	}
 	@GetMapping("/getBoard")
-	public String getBoard(@ModelAttribute("member") MemberVO member,BoardVO board, Model model) {
-		if(member.getId() ==null) {
-			return "redirect:login";
-		}
+	public String getBoard(BoardVO board, Model model) {
+	
 		model.addAttribute("board",boardService.getBoard(board));
 		return "getBoard";
 	}
 	
+//	@PostMapping("/updateBoard")
+//	public String updateBoard(@ModelAttribute("member") MemberVO member,BoardVO board) {
+//		if(member.getId() ==null) {
+//			return "redirect:login";
+//		}
+//		boardService.updateBoard(board);
+//		return "forward:getBoardList";
+//	}
+//
+//	@GetMapping("/deleteBoard")
+//	public String deleteBoard(@ModelAttribute("member") MemberVO member,BoardVO board) {
+//		if(member.getId() ==null) {
+//			return "redirect:login";
+//		}
+//		boardService.deleteBoard(board);
+//		return "forward:getBoardList";
+//	}
 	@PostMapping("/updateBoard")
-	public String updateBoard(@ModelAttribute("member") MemberVO member,BoardVO board) {
-		if(member.getId() ==null) {
-			return "redirect:login";
-		}
+	public String updateBoard(BoardVO board) {
+	
 		boardService.updateBoard(board);
 		return "forward:getBoardList";
 	}
 
 	@GetMapping("/deleteBoard")
-	public String deleteBoard(@ModelAttribute("member") MemberVO member,BoardVO board) {
-		if(member.getId() ==null) {
-			return "redirect:login";
-		}
+	public String deleteBoard(BoardVO board) {
+	
 		boardService.deleteBoard(board);
 		return "forward:getBoardList";
 	}
