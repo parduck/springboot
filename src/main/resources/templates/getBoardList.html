@@ -1,4 +1,4 @@
-<html xmlns:th="http://wwww.thymeleaf.org">
+<html xmlns:th="http://wwww.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 
 <head>
 	<title>게시글 목록</title>
@@ -7,8 +7,26 @@
 
 <body th:align="center">
 <h1>게시글 목록</h1>
+<span sec:authorize="isAuthenticated()">
+	<b><font color="red">
+	<span sec:authentication="principal.member.name"></span>
+	</font></b>님 환영합니다.....
+	<a th:href="@{/logout}">Logout</a>&nbsp;&nbsp;&nbsp;
+	<a th:href="@{/admin/adminPage}">Admin</a>
+</span>
 <!-- <h3><font color="red" th:text="${session['member'].name}"></font>님 게시판 입장을 환영합니다.</h3> -->
-<a th:href="@{/logout}">LOG_OUT</a>
+<form th:action="@{/getBoardList}" method="post"><table th:align="center" boarder="1" th:dellpadding="0" th:cellspacing="0" th:width="700">
+	<tr>
+	<td align="right">
+		<select name="searchCondition">
+			<option value="TITLE">title</option>
+			<option value="CONTENT">content</option>
+		</select>
+		<input name="searchKeyword" type="text" />
+		<input type="submit" value="검색" />
+	</td>
+	</tr>
+</table></form>
 <table th:align="center" boarder="1" th:cellpadding="0" th:cellspacing="0" th:width="700">
 <tr>
 	<th bgcolor="orange" width="100">번호</th>

@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.sec.admin.dao.BoardDao;
-import com.sec.domain.Board;
+import com.sec.domain.Search;
 import com.sec.vo.BoardVO;
 
 @Service
@@ -17,8 +17,8 @@ public class BoardBizImpl implements BoardBiz {
 		private BoardDao boardDao;
 		
 		@Override
-		public List<BoardVO> getBoardList(BoardVO board){
-			return (List<BoardVO>)boardDao.getBoardList(board);
+		public List<BoardVO> getBoardList(Search search){
+			return (List<BoardVO>)boardDao.getBoardList(search);
 		}
 		
 		@Override

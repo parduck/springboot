@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.sec.admin.service.BoardService;
 import com.sec.config.SecurityUser;
+import com.sec.domain.Search;
 import com.sec.vo.BoardVO;
 import com.sec.vo.MemberVO;
 
@@ -44,9 +45,14 @@ public class BoardController {
 //		return "getBoardList";
 //	}
 	@RequestMapping("/getBoardList")
-	public String getBoardList(Model model, BoardVO board) {
+	public String getBoardList(Model model, Search search) {
 
-		List<BoardVO> boardList = boardService.getBoardList(board);
+		if(search.getSearchCondition() ==null)
+			search.setSearchCondition("TITLE");
+		if(search.getSearchKeyword()==null)
+			search.setSearchKeyword("");
+		
+		List<BoardVO> boardList = boardService.getBoardList(search);
 		model.addAttribute("boardList",boardList);
 		return "getBoardList";
 	}

@@ -1,12 +1,12 @@
 package com.sec.admin.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.sec.admin.biz.BoardBiz;
-import com.sec.domain.Board;
-import com.sec.repo.BoardRepository;
+import com.sec.domain.Search;
 import com.sec.vo.BoardVO;
 
 @Service
@@ -18,8 +18,8 @@ public class BoardServiceImpl implements BoardService {
 	
 	
 	@Override
-	public List<BoardVO> getBoardList(BoardVO board){
-		return (List<BoardVO>)boardBiz.getBoardList(board);
+	public List<BoardVO> getBoardList(Search search){
+		return (List<BoardVO>)boardBiz.getBoardList(search);
 	}
 	
 	@Override

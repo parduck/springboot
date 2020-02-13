@@ -5,10 +5,16 @@ import java.util.List;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Component;
 
+import com.querydsl.core.BooleanBuilder;
 import com.sec.domain.Board;
 import com.sec.domain.Member;
+import com.sec.domain.QBoard;
+import com.sec.domain.Search;
 import com.sec.repo.BoardRepository;
 import com.sec.vo.BoardVO;
 import com.sec.vo.MemberVO;
@@ -24,12 +30,20 @@ public class BoardDaoImpl implements BoardDao {
 	//BeanUtils 객체가 있습니다. Source 객체에 있는 필드들의 값을 target객체의 필드에 똑같이 set 해주는 역할
 	
 	@Override
-	public List<BoardVO> getBoardList(BoardVO board){
+	public List<BoardVO> getBoardList(Search search){
 
+		BooleanBuilder builder = new BooleanBuilder();
+		QBoard qboard = QBoard.board;
+		if(search.getSearchCondition().equals("TITLE")) {
+			builder.and(qboard.title.like("%"+search.getSearchKeyword()+"%"));
+		}else if(search.getSearchCondition().equals("CONTENT")) {
+			builder.and(qboard.content.like("%"+search.getSearchKeyword()+"%"));
+		}
+		Pageable pageable = PageRequest.of(0, 10,Sort.Direction.DESC,"seq");
 		List<BoardVO> boardVOList = new ArrayList<BoardVO>();
-		
+			
 		//JPA 쿼리
-		List<Board> boardList =boardRepo.findAll();
+		List<Board> boardList =(List)boardRepo.findAll(builder);
 		
 		//convert entity to VO
 		for (int i = 0; i < boardList.size(); i++) { 
